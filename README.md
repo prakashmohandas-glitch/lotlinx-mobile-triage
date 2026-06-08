@@ -1,5 +1,8 @@
 # Lotlinx Mobile — Inventory Triage (built app)
 
+**▶ Live demo:** https://prakashmohandas-glitch.github.io/lotlinx-mobile-triage/
+(open on a phone — full-screen; on desktop it shows a device frame)
+
 Runnable build of the approved **Dossier Split (Layout B)** direction from the design
 handoff. Single-phone, full flow, production-intent — the prototype's 3-up comparison and
 the live "Tweaks" panel are removed and the demo defaults are baked in as design decisions.
