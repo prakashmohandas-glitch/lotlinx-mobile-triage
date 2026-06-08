@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Lotlinx · Inventory Triage</title>
+<meta name="theme-color" content="#191919">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin:0; padding:0; height:100%; width:100%; overflow-x:hidden; }
+  body {
+    font-family:"Hanken Grotesk", sans-serif;
+    background:#000; color:#191919;
+    -webkit-font-smoothing:antialiased;
+    overscroll-behavior:none;
+  }
+  button { font-family:inherit; }
+
+  /* hidden scrollbars inside scroll areas */
+  .ll-scroll::-webkit-scrollbar { width:0; height:0; }
+  .ll-scroll { scrollbar-width:none; }
+
+  /* bouncing CTA chevron */
+  @keyframes llBounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);} }
+  .ll-bounce { animation:llBounce 1.5s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .ll-bounce { animation:none; } }
+
+  /* ---- responsive phone frame · mobile-first ----
+     Default (phones): the app fills the whole visible viewport, no bezel.
+     Large screens only: show a centered device with a bezel. */
+  #stage {
+    position:fixed; inset:0;
+    display:grid; place-items:center;
+    background:#000;
+  }
+  .bezel { display:contents; }            /* no frame on phones */
+  .screen {
+    position:relative;
+    width:100vw;
+    height:100vh;                          /* fallback for old browsers */
+    height:100svh;                         /* iOS-safe: never taller than the visible area */
+    border-radius:0; overflow:hidden; background:#F4F4F5;
+  }
+  /* Desktop / large viewports: render the device mockup with bezel. */
+  @media (min-width: 700px) and (min-height: 760px) {
+    #stage { background:#E6E6E8; }
+    .bezel {
+      display:block;
+      padding:11px; border-radius:54px; background:#0B0B0C;
+      box-shadow:0 40px 80px -30px rgba(0,0,0,.6), inset 0 0 0 1.5px #2a2a2c;
+    }
+    .screen { width:392px; height:812px; border-radius:44px; }
+  }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <div class="bezel">
+      <div class="screen"><div id="root"></div></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="app/data.jsx"></script>
+  <script type="text/babel" src="app/atoms.jsx"></script>
+  <script type="text/babel" src="app/parts.jsx"></script>
+  <script type="text/babel" src="app/kpi.jsx"></script>
+  <script type="text/babel" src="app/deck.jsx"></script>
+  <script type="text/babel" src="app/app.jsx"></script>
+</body>
+</html>
