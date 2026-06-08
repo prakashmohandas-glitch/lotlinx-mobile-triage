@@ -98,29 +98,24 @@ function EvidenceChips({ v }) {
   );
 }
 
-/* ---- row of 4 action buttons; the recommended one is filled ---- */
+/* ---- row of 4 action buttons ----
+   DEMO: shown but inactive (greyed out, non-interactive). The card stays fully
+   swipeable across this area. To re-enable, restore the button/onPick handlers
+   from git history (commit before "grey out action buttons"). */
 function ActionRow({ v, onPick }) {
-  const stop = (e)=>e.stopPropagation();
-  const Btn = ({ k, rec }) => {
-    const [hov,setHov] = useState(false);
-    return (
-      <button onPointerDown={stop} onClick={(e)=>{stop(e);onPick(k);}}
-        onMouseEnter={()=>setHov(1)} onMouseLeave={()=>setHov(0)}
-        style={{ display:'flex', flexDirection:'column', alignItems:'center',
-          justifyContent:'center', gap:5, padding:'10px 4px', flex:1,
-          borderRadius:12, cursor:'pointer', userSelect:'none', transition:'all .12s',
-          fontFamily:'Archivo,sans-serif',
-          border:`1px solid ${rec?BRAND:'#E7E7E9'}`,
-          background: rec ? BRAND : (hov?'#FAFAFA':'#fff') }}>
-        <ActionIcon kind={k} size={19} color={rec?'#fff':'#474747'} />
-        <span style={{ fontWeight:700, fontSize:10.5, lineHeight:1.1, textAlign:'center',
-          color: rec?'#fff':'#474747' }}>{ACTIONS[k].label}</span>
-      </button>
-    );
-  };
   return (
-    <div style={{ display:'flex', gap:7 }}>
-      {ACTION_ORDER.map(k=><Btn key={k} k={k} rec={k===v.action} />)}
+    <div style={{ display:'flex', gap:7, pointerEvents:'none', userSelect:'none' }}>
+      {ACTION_ORDER.map(k=>(
+        <div key={k} aria-disabled="true"
+          style={{ display:'flex', flexDirection:'column', alignItems:'center',
+            justifyContent:'center', gap:5, padding:'10px 4px', flex:1,
+            borderRadius:12, fontFamily:'Archivo,sans-serif',
+            border:'1px solid #ECECEE', background:'#F4F4F5', opacity:.65 }}>
+          <ActionIcon kind={k} size={19} color="#BFC0C5" />
+          <span style={{ fontWeight:700, fontSize:10.5, lineHeight:1.1, textAlign:'center',
+            color:'#B6B7BC' }}>{ACTIONS[k].label}</span>
+        </div>
+      ))}
     </div>
   );
 }

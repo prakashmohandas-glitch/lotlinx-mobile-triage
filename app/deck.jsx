@@ -235,6 +235,7 @@ function SwipeDeck({ onBack }) {
           </div>
         )}
         <div
+          key={v.id}
           onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp}
           onPointerCancel={onUp} onPointerLeave={()=>dragging&&onUp()}
           style={{ position:'absolute', inset:'4px 14px 6px', touchAction:'pan-y',
